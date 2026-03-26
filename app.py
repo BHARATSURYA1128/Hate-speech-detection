@@ -3,7 +3,7 @@ import pickle
 
 app = Flask(__name__)
 
-# Load models
+# Load model and vectorizer
 rf_model = pickle.load(open("RF.sav", "rb"))
 vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 
@@ -12,7 +12,7 @@ vectorizer = pickle.load(open("vectorizer.pkl", "rb"))
 def home():
     return render_template("index.html")
 
-# Prediction API (called by JS)
+# Prediction API
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
@@ -22,11 +22,8 @@ def predict():
 
         vec = vectorizer.transform([text])
 
-        # Choose model
-        if model_type == "rf":
-            prediction = rf_model.predict(vec)[0]
-        else:
-            prediction = rf_model.predict(vec)[0]  # fallback
+        # Use Random Forest
+        prediction = rf_model.predict(vec)[0]
 
         labels = {0: "Hate Speech", 1: "Offensive", 2: "Neutral"}
         result = labels.get(prediction, str(prediction))
