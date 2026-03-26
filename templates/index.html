@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ContextGuard - AI Moderation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <div class="header">
+        <img src="{{ url_for('static', filename='logo.png') }}" alt="College Logo">
+
+        <div class="header-title">
+            <h1>ContextGuard</h1>
+            <p>Scalable AI Framework for Multi-Class Inappropriate Language Detection</p>
+        </div>
+    </div>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <div class="container">
+        <h2>Inappropriate Language Detector</h2>
+        <p>Enter text below to classify content</p>
+
+        <textarea id="textInput" placeholder="Enter text here..."></textarea>
+
+        <select id="modelSelect">
+            <option value="rf">Random Forest</option>
+            <option value="dt">Decision Tree</option>
+            <option value="lstm">LSTM</option>
+        </select>
+
+        <button onclick="predict()">Analyze Text</button>
+
+        <div class="result" id="result"></div>
+    </div>
+
+    <!-- ===== FOOTER ===== -->
+    <div class="footer">
+        <p>
+            Developed by:<br>
+            D. Ganga Bhavani<br>
+            K. Sri Koushik<br>
+            J. Bharat Surya<br>
+            D. Venkata Reddy<br><br>
+            Department of Artificial Intelligence and Machine Learning<br>
+            Vishnu Institute of Technology, Bhimavaram
+        </p>
+    </div>
+
+<script>
+async function predict() {
+    const text = document.getElementById("textInput").value;
+    const model = document.getElementById("modelSelect").value;
+
+    const response = await fetch("/predict", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ text: text, model: model })
+    });
+
+    const data = await response.json();
+
+    const resultDiv = document.getElementById("result");
+    resultDiv.innerHTML = data.prediction;
+    resultDiv.className = "result";
+
+    if (data.prediction === "Hate Speech") {
+        resultDiv.classList.add("hate");
+    } else if (data.prediction === "Offensive") {
+        resultDiv.classList.add("offensive");
+    } else {
+        resultDiv.classList.add("neutral");
+    }
+}
+</script>
+
+</body>
+</html>

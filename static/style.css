@@ -1,0 +1,122 @@
+/* ===== Global Styling ===== */
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #333;
+}
+
+/* ===== Header Section ===== */
+
+.header {
+    background: white;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.header img {
+    height: 70px;
+}
+
+.header-title {
+    text-align: center;
+    flex: 1;
+}
+
+.header-title h1 {
+    margin: 0;
+    font-size: 28px;
+    color: #1e3c72;
+}
+
+.header-title p {
+    margin: 5px 0 0 0;
+    font-size: 14px;
+    color: #555;
+}
+
+/* ===== Main Card ===== */
+
+.container {
+    max-width: 600px;
+    margin: 60px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    text-align: center;
+}
+
+.container h2 {
+    margin-bottom: 10px;
+    color: #1e3c72;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+    resize: none;
+}
+
+select, button {
+    width: 100%;
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    font-size: 15px;
+}
+
+select {
+    border: 1px solid #ccc;
+}
+
+button {
+    background: #1e3c72;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #16325c;
+}
+
+/* ===== Result Styling ===== */
+
+.result {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.hate {
+    color: red;
+}
+
+.offensive {
+    color: orange;
+}
+
+.neutral {
+    color: green;
+}
+
+/* ===== Footer Section ===== */
+
+.footer {
+    margin-top: 40px;
+    text-align: center;
+    color: white;
+    padding: 15px;
+    font-size: 14px;
+}
